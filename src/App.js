@@ -1,25 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { Navigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import "./App.css";
+import { useState } from "react";
+import { Final } from "./pages/finalPage";
+import { Game } from "./pages/gamePage";
+import { Initial } from "./pages/initialPage";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  // const [isAuthenticated, setIsAuthenticated] = useState(true);
+  // const [isAuth, setIsAuth] = useState(true);
+  const auth = useSelector((state) => state);
+  console.log(auth);
+
+  const router = createBrowserRouter([
+    {
+      path: "",
+      element: <Initial />,
+    },
+    {
+      path: "/game",
+      element: auth.isGameAuth ? <Game /> : <Navigate to="/" replace />,
+    },
+    {
+      path: "/final",
+      element: auth.isFinalAuth ? <Final /> : <Navigate to="/game" replace />,
+    },
+  ]);
+
+  return <RouterProvider router={router} />;
 }
 
 export default App;

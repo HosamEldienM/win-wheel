@@ -1,0 +1,12 @@
+.wheel{
+    margin-top: -55px;
+}
+.couponValue{
+    background-color: #a2c3a4;
+}
+
+@media (max-width:300px){
+    .contentContainer{
+        width:90%;
+    }
+}

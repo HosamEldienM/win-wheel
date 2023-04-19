@@ -1,4 +1,8 @@
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import {
+  RouterProvider,
+  HashRouter,
+  createBrowserRouter,
+} from "react-router-dom";
 import { Navigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import "./App.css";
@@ -28,7 +32,7 @@ function App() {
     },
   ]);
 
-  return <RouterProvider router={router} />;
+  return <HashRouter router={router} />;
 }
 
 export default App;

@@ -17,22 +17,25 @@ function App() {
   const auth = useSelector((state) => state);
   console.log(auth);
 
-  const router = createBrowserRouter([
-    {
-      path: "",
-      element: <Initial />,
-    },
-    {
-      path: "/game",
-      element: auth.isGameAuth ? <Game /> : <Navigate to="/" replace />,
-    },
-    {
-      path: "/final",
-      element: auth.isFinalAuth ? <Final /> : <Navigate to="/game" replace />,
-    },
-  ]);
+  const router = createBrowserRouter({
+    basename: process.env.PUBLIC_URL,
+    routes: [
+      {
+        path: "",
+        element: <Initial />,
+      },
+      {
+        path: "/game",
+        element: auth.isGameAuth ? <Game /> : <Navigate to="/" replace />,
+      },
+      {
+        path: "/final",
+        element: auth.isFinalAuth ? <Final /> : <Navigate to="/game" replace />,
+      },
+    ],
+  });
 
-  return <HashRouter router={router} />;
+  return <RouterProvider router={router} />;
 }
 
 export default App;

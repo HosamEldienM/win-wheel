@@ -6,19 +6,17 @@ import {
 import { Navigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import "./App.css";
-import { useState } from "react";
+
 import { Final } from "./pages/finalPage";
 import { Game } from "./pages/gamePage";
 import { Initial } from "./pages/initialPage";
 
 function App() {
-  // const [isAuthenticated, setIsAuthenticated] = useState(true);
-  // const [isAuth, setIsAuth] = useState(true);
   const auth = useSelector((state) => state);
   console.log(auth);
 
   const router = createBrowserRouter({
-    basename: process.env.PUBLIC_URL,
+    basename: "/win-wheel",
     routes: [
       {
         path: "",

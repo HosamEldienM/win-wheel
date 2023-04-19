@@ -26,23 +26,27 @@ const phoneReducer = (state, action) => {
   if (action.type === "PHONE_INPUT") {
     return {
       value: action.val,
-      isValid: /^[+]?[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-\s.]?[0-9]{6}$/.test(action.val),
+      isValid: /^[+]?[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-\s.]?[0-9]{6}$/.test(
+        action.val
+      ),
     };
   } else if (action.type === "PHONE_BLUR") {
     return {
       value: state.value,
-      isValid: /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{6}$/.test(state.value),
+      isValid: /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{6}$/.test(
+        state.value
+      ),
     };
   } else {
     return { value: "", isValid: false };
   }
 };
 export const Initial = (props) => {
-     const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   const navigate = useNavigate();
   const [emailState, dispatchEmail] = useReducer(emailReducer, {
-    value:"",
+    value: "",
     isValid: null,
   });
   const [phoneState, dispatchPhone] = useReducer(phoneReducer, {
@@ -51,11 +55,10 @@ export const Initial = (props) => {
   });
   const [isChecked, setIsChecked] = useState(false);
   const [validationMsg, setValidationMsg] = useState("");
- 
-  useEffect(() => {
-   
-    console.log(phoneState.value)
-  },[phoneState.isValid])
+
+  // useEffect(() => {
+
+  // },[phoneState.isValid])
 
   const emailChangeHandler = (event) => {
     dispatchEmail({ type: "EMAIL_INPUT", val: event.target.value });
@@ -67,26 +70,24 @@ export const Initial = (props) => {
   const phoneChangeHandler = (event) => {
     dispatchPhone({ type: "PHONE_INPUT", val: event.target.value });
   };
-   const validatePhoneHandler = () => {
-     dispatchPhone({ type: "PHONE_BLUR" });
-  };
-  
-  const checkHandler = (event) => {
-    setIsChecked(event.target.checked)
-  }
-  const submitHandler = (event) => {
-    event.preventDefault();
- 
-    if (emailState.isValid && phoneState.isValid && isChecked) {
-      dispatch({ type: "GAMEAUTH" });
-       navigate("/game");
-     }
-     if (!isChecked) {
-       setValidationMsg("Please accept the terms and conditions");
-       
-     }
+  const validatePhoneHandler = () => {
+    dispatchPhone({ type: "PHONE_BLUR" });
   };
 
+  const checkHandler = (event) => {
+    setIsChecked(event.target.checked);
+  };
+  const submitHandler = (event) => {
+    event.preventDefault();
+
+    if (emailState.isValid && phoneState.isValid && isChecked) {
+      dispatch({ type: "GAMEAUTH" });
+      navigate("/game");
+    }
+    if (!isChecked) {
+      setValidationMsg("Please accept the terms and conditions");
+    }
+  };
 
   return (
     <div
@@ -169,11 +170,11 @@ export const Initial = (props) => {
           {/* {!isChecked === true && (
             <p className=" italic text-xs text-red-500 text-center">* not checked </p>
           )} */}
-          {!isChecked&&
+          {!isChecked && (
             <p className=" italic text-xs text-red-500 text-center">
-             {validationMsg}
+              {validationMsg}
             </p>
-          }
+          )}
           <Button type="submit" width="w-full">
             try your luck
           </Button>

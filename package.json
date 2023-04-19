@@ -17,7 +17,10 @@
     "redux": "^4.2.1",
     "web-vitals": "^2.1.4"
   },
+  "homepage": "https://HosamEldienM.github.io/win-wheel",
   "scripts": {
+    "predeploy": "npm run build",
+"deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

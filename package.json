@@ -1,8 +1,8 @@
 {
-  "homepage": "https://hosameldienm.github.io/win-wheel/",
   "name": "win-wheel",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://HosamEldienM.github.io/win-wheel",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.3.0",
     "@fortawesome/free-solid-svg-icons": "^6.3.0",

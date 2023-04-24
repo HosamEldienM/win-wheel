@@ -1,7 +1,7 @@
 import {
   RouterProvider,
-  HashRouter,
   createBrowserRouter,
+  createHashRouter,
 } from "react-router-dom";
 import { Navigate } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -15,23 +15,20 @@ function App() {
   const auth = useSelector((state) => state);
   console.log(auth);
 
-  const router = createBrowserRouter({
-    basename: "/win-wheel",
-    routes: [
-      {
-        path: "",
-        element: <Initial />,
-      },
-      {
-        path: "/game",
-        element: auth.isGameAuth ? <Game /> : <Navigate to="/" replace />,
-      },
-      {
-        path: "/final",
-        element: auth.isFinalAuth ? <Final /> : <Navigate to="/game" replace />,
-      },
-    ],
-  });
+  const router = createHashRouter([
+    {
+      path: "",
+      element: <Initial />,
+    },
+    {
+      path: "/game",
+      element: auth.isGameAuth ? <Game /> : <Navigate to="/" replace />,
+    },
+    {
+      path: "/final",
+      element: auth.isFinalAuth ? <Final /> : <Navigate to="/game" replace />,
+    },
+  ]);
 
   return <RouterProvider router={router} />;
 }
